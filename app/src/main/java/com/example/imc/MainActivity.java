@@ -5,10 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText imc_calculo;
+    private float calculo_imc;
     private EditText altura;
     private EditText peso;
 
@@ -20,12 +21,15 @@ public class MainActivity extends AppCompatActivity {
         altura=findViewById(R.id.tipo_altura);
         peso=findViewById(R.id.tipo_peso);
 
-        imc_calculo=peso/altura*altura;
+        CalcularImc();
 
-        CalcularImc(altura,peso);
     }
 
-    public void CalcularImc(View altura, View peso){
+    public void CalcularImc(){
+        float imc_altura= Float.parseFloat(altura.getText().toString());
+        float imc_peso= Float.parseFloat(peso.getText().toString());
 
+        calculo_imc= imc_peso/(imc_altura*imc_altura);
+        Toast.makeText(this, "IMC: "+calculo_imc+"\n"+"Teste", Toast.LENGTH_SHORT).show();
     }
 }
